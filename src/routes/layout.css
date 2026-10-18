@@ -76,6 +76,13 @@
 	--default-transition-timing-function: var(--ease-out-soft);
 }
 
+/* 日本語・中国語は1文字ずつ折り返せるため balance だと語の途中で改行されやすい。
+   見出しは通常の折り返しにし、幅(max-width)で改行位置を制御する */
+:root:lang(ja) :is(h1, h2, h3, h4),
+:root:lang(zh) :is(h1, h2, h3, h4) {
+	text-wrap: auto;
+}
+
 /* 中国語ページは書体を差し替える */
 :root:lang(zh) {
 	--font-mincho: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
