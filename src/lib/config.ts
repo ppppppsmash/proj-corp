@@ -7,11 +7,11 @@ export const config = {
 	siteUrl: '',
 
 	/**
-	 * お問い合わせフォームの送信先。JSON を POST する。
-	 * 例: Formspree 'https://formspree.io/f/xxxx'、Cloudflare Worker '/api/contact' など。
-	 * 空の間はフォーム送信が「準備中」になる。
+	 * お問い合わせフォームの送信先(JSON を POST)。
+	 * 既定は自前の API(src/routes/api/contact)。Vercel の環境変数 RESEND_API_KEY と
+	 * CONTACT_TO_EMAIL が未設定の間、API は 503 を返し、フォームは「準備中」を表示する。
 	 */
-	contactEndpoint: '',
+	contactEndpoint: '/api/contact',
 
 	/** Amazon 商品ページ(未定) */
 	amazonUrl: ''

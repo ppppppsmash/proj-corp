@@ -50,7 +50,7 @@
 						headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 						body: JSON.stringify({ ...f.data, website: undefined, locale, page: page.url.href })
 					});
-					status = res.ok ? 'sent' : 'failed';
+					status = res.ok ? 'sent' : res.status === 503 ? 'unavailable' : 'failed';
 				} catch {
 					status = 'failed';
 				}
