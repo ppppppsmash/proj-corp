@@ -2,11 +2,12 @@
 	import * as m from '#lib/paraglide/messages.js';
 	import { reveal } from '#lib/actions/reveal.js';
 	import { product } from '#lib/data/company.js';
+	import { config } from '#lib/config.js';
 	import Button from '#lib/components/ui/Button.svelte';
 	import PageHeader from '#lib/components/ui/PageHeader.svelte';
 	import ProductImage from '#lib/components/ui/ProductImage.svelte';
 
-	const amazonUrl = product.amazonUrl;
+	const amazonUrl = config.amazonUrl;
 	const p = product.perServing;
 
 	const features = [

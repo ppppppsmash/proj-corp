@@ -3,6 +3,7 @@
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { reveal } from '#lib/actions/reveal.js';
 	import { product } from '#lib/data/company.js';
+	import { config } from '#lib/config.js';
 	import { categoryLabel, formatDate, getNews } from '#lib/content/news.js';
 	import { localHref, localHrefParams } from '#lib/utils/href.js';
 	import Button from '#lib/components/ui/Button.svelte';
@@ -16,7 +17,7 @@
 	const news = getNews(locale, 3);
 	// 日本語・中国語は縦書きの見出しにする
 	const vertical = locale !== 'en';
-	const amazonUrl = product.amazonUrl;
+	const amazonUrl = config.amazonUrl;
 
 	const businesses = [
 		{ no: '01', title: m.business_brand_title, body: m.business_brand_body, en: 'Own Brand' },

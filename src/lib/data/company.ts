@@ -38,6 +38,5 @@ export const product = {
 		fatG: 0.03,
 		carbG: 0.39,
 		saltG: 0.0007
-	},
-	amazonUrl: '' // 後日設定(PUBLIC_AMAZON_PRODUCT_URL でも上書き可)
+	}
 } as const;
