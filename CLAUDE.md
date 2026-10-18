@@ -1,5 +1,7 @@
 # 漢松堂株式会社 コーポレートサイト
 
+進捗と TODO は `docs/PROGRESS.md` を参照(作業の区切りごとに更新する)。
+
 ## スタック
 - SvelteKit 3 / Svelte 5 (runes 強制)。設定は `vite.config.ts` に集約(svelte.config.js は無い)
 - `$lib` ではなく `#lib` エイリアス(package.json の `imports`)
