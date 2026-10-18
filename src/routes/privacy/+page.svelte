@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { company } from '#lib/data/company.js';
 	import { getPage } from '#lib/content/pages.js';
@@ -10,10 +11,7 @@
 	const Policy = getPage(locale, 'privacy')?.default;
 </script>
 
-<svelte:head>
-	<title>{m.footer_privacy()} | {m.site_name()}</title>
-	<meta name="robots" content="noindex, follow" />
-</svelte:head>
+<Seo title={m.footer_privacy()} noindex />
 
 <PageHeader label="Privacy Policy" title={m.footer_privacy()} />
 

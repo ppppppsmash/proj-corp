@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { reveal } from '#lib/actions/reveal.js';
 	import { company } from '#lib/data/company.js';
@@ -31,10 +32,10 @@
 	];
 </script>
 
-<svelte:head>
-	<title>{m.nav_company()} | {m.site_name()}</title>
-	<meta name="description" content="{company.nameJa} {m.company_business_value()}" />
-</svelte:head>
+<Seo
+	title={m.nav_company()}
+	description="{locale === 'ja' ? company.nameJa : company.nameEn} {m.company_business_value()}"
+/>
 
 <PageHeader label="Company" title={m.nav_company()} />
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { reveal } from '#lib/actions/reveal.js';
 	import { company } from '#lib/data/company.js';
@@ -12,10 +13,7 @@
 	const Greeting = getPage(locale, 'greeting')?.default;
 </script>
 
-<svelte:head>
-	<title>{m.nav_philosophy()} | {m.site_name()}</title>
-	<meta name="description" content={m.philosophy_lead()} />
-</svelte:head>
+<Seo title={m.nav_philosophy()} description={m.philosophy_lead()} />
 
 <PageHeader label="Philosophy" title={m.nav_philosophy()} lead={m.philosophy_lead()} />
 

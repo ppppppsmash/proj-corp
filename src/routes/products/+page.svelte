@@ -1,7 +1,8 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
 	import { reveal } from '#lib/actions/reveal.js';
-	import { product } from '#lib/data/company.js';
+	import { company, product } from '#lib/data/company.js';
 	import { config } from '#lib/config.js';
 	import Button from '#lib/components/ui/Button.svelte';
 	import PageHeader from '#lib/components/ui/PageHeader.svelte';
@@ -25,10 +26,20 @@
 	] as const;
 </script>
 
-<svelte:head>
-	<title>{m.product_name()} | {m.site_name()}</title>
-	<meta name="description" content={m.product_summary()} />
-</svelte:head>
+<Seo
+	title={m.product_name()}
+	description={m.product_summary()}
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'Product',
+		name: m.product_name(),
+		description: m.product_summary(),
+		gtin13: product.jan,
+		brand: { '@type': 'Brand', name: 'KANSHODO' },
+		manufacturer: { '@type': 'Organization', name: company.nameJa },
+		...(config.siteUrl ? { image: `${config.siteUrl}/og.png` } : {})
+	}}
+/>
 
 <PageHeader label="Products" title={m.nav_products()} />
 

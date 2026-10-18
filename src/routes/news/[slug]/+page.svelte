@@ -1,5 +1,7 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
+	import { company } from '#lib/data/company.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { categoryLabel, formatDate, getNewsEntry } from '#lib/content/news.js';
 	import { localHref } from '#lib/utils/href.js';
@@ -10,9 +12,18 @@
 	const Content = $derived(getNewsEntry(getLocale(), data.slug)?.content);
 </script>
 
-<svelte:head>
-	<title>{data.title} | {m.nav_news()} | {m.site_name()}</title>
-</svelte:head>
+<Seo
+	title={data.title}
+	type="article"
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'NewsArticle',
+		headline: data.title,
+		datePublished: data.date,
+		inLanguage: getLocale(),
+		publisher: { '@type': 'Organization', name: company.nameJa }
+	}}
+/>
 
 <article class="container-site pt-16 pb-section md:pt-24">
 	<header class="max-w-[40em]">

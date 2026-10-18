@@ -1,13 +1,11 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
 	import PageHeader from '#lib/components/ui/PageHeader.svelte';
 	import ContactForm from '#lib/components/forms/ContactForm.svelte';
 </script>
 
-<svelte:head>
-	<title>{m.nav_contact()} | {m.site_name()}</title>
-	<meta name="description" content={m.contact_lead()} />
-</svelte:head>
+<Seo title={m.nav_contact()} description={m.contact_lead()} />
 
 <PageHeader label="Contact" title={m.nav_contact()} lead={m.contact_lead()} />
 

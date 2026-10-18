@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { reveal } from '#lib/actions/reveal.js';
 	import { categoryLabel, formatDate, getNews } from '#lib/content/news.js';
@@ -10,10 +11,7 @@
 	const news = getNews(locale);
 </script>
 
-<svelte:head>
-	<title>{m.nav_news()} | {m.site_name()}</title>
-	<meta name="description" content={m.news_lead()} />
-</svelte:head>
+<Seo title={m.nav_news()} description={m.news_lead()} />
 
 <PageHeader label="News" title={m.nav_news()} lead={m.news_lead()} />
 

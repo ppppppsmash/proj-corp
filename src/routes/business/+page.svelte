@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { reveal } from '#lib/actions/reveal.js';
 	import { getPage } from '#lib/content/pages.js';
@@ -20,10 +21,7 @@
 	];
 </script>
 
-<svelte:head>
-	<title>{m.nav_business()} | {m.site_name()}</title>
-	<meta name="description" content={m.business_lead()} />
-</svelte:head>
+<Seo title={m.nav_business()} description={m.business_lead()} />
 
 <PageHeader label="Business" title={m.nav_business()} lead={m.business_lead()} />
 

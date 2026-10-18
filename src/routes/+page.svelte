@@ -1,8 +1,9 @@
 <script lang="ts">
 	import * as m from '#lib/paraglide/messages.js';
+	import Seo from '#lib/components/Seo.svelte';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { reveal } from '#lib/actions/reveal.js';
-	import { product } from '#lib/data/company.js';
+	import { company, product } from '#lib/data/company.js';
 	import { config } from '#lib/config.js';
 	import { categoryLabel, formatDate, getNews } from '#lib/content/news.js';
 	import { localHref, localHrefParams } from '#lib/utils/href.js';
@@ -25,10 +26,26 @@
 	];
 </script>
 
-<svelte:head>
-	<title>{m.site_name()} | {m.site_tagline()}</title>
-	<meta name="description" content={m.home_hero_lead()} />
-</svelte:head>
+<Seo
+	description={m.home_hero_lead()}
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		name: company.nameJa,
+		alternateName: company.nameEn,
+		...(config.siteUrl ? { url: config.siteUrl, logo: `${config.siteUrl}/icon-512.png` } : {}),
+		telephone: company.telIntl,
+		foundingDate: company.founded,
+		address: {
+			'@type': 'PostalAddress',
+			postalCode: company.postalCode,
+			addressRegion: '東京都',
+			addressLocality: '中央区',
+			streetAddress: '東日本橋1-1-9-2F 備広東日本橋ビルIII',
+			addressCountry: 'JP'
+		}
+	}}
+/>
 
 <!-- ============ Hero ============
      背景: WebGL の霧(MistCanvas)。実写が入ったら写真の上に薄く重ねる想定。
