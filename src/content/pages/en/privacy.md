@@ -58,8 +58,8 @@ When an individual or their representative requests notification of the purpose 
 
 For questions, consultations or requests concerning the handling of personal information, please contact:
 
-Kanshodo Co., Ltd., Personal Information Inquiry Desk
-Phone: +81-3-4333-3211
+Kanshodo Co., Ltd., Personal Information Inquiry Desk  
+Phone: +81-3-4333-3211  
 Or use the contact form on our website.
 
 ## 11. Changes to This Policy
