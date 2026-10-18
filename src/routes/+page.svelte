@@ -4,7 +4,7 @@
 	import { reveal } from '#lib/actions/reveal.js';
 	import { product } from '#lib/data/company.js';
 	import { categoryLabel, formatDate, getNews } from '#lib/content/news.js';
-	import { localHref } from '#lib/utils/href.js';
+	import { localHref, localHrefParams } from '#lib/utils/href.js';
 	import Button from '#lib/components/ui/Button.svelte';
 	import PineMotif from '#lib/components/ui/PineMotif.svelte';
 	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
@@ -149,7 +149,7 @@
 			{#each news as item, i (item.slug)}
 				<li class="border-b border-kinari-300" use:reveal={{ delay: i * 100 }}>
 					<a
-						href={localHref('/news')}
+						href={localHrefParams('/news/[slug]', { slug: item.slug })}
 						class="grid gap-2 py-6 no-underline transition-colors hover:text-pine-700 md:grid-cols-12 md:gap-8"
 					>
 						<time
