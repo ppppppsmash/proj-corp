@@ -1,2 +1,168 @@
+/* ------------------------------------------------------------------
+   漢松堂 デザイントークン
+   方針: 松葉の深緑 × 墨 × 生成り。金は罫線・小ラベルのみ。角丸ゼロ、影なし。
+   フォントは自前ホスティング(中国本土から Google Fonts が届かないため)。
+------------------------------------------------------------------- */
+
+/* Web フォントの @font-face は src/lib/styles/fonts.css / fonts-zh.css(+layout.svelte で非同期読込) */
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+@theme {
+	/* --- 色 --- */
+	--color-*: initial;
+
+	--color-white: #ffffff;
+	--color-black: #000000;
+	--color-transparent: transparent;
+	--color-current: currentColor;
+
+	/* 松(主色) */
+	--color-pine-50: #eef3f0;
+	--color-pine-100: #dbe6df;
+	--color-pine-200: #c0d2c7;
+	--color-pine-300: #94b3a1;
+	--color-pine-500: #4b7a66;
+	--color-pine-700: #2f5546;
+	--color-pine-900: #1e3a2f;
+	--color-pine-950: #0f201a;
+
+	/* 墨(文字) */
+	--color-sumi-900: #1c1c1a;
+	--color-sumi-700: #3a3a37;
+	--color-sumi-500: #6b6b66;
+	--color-sumi-400: #8a8a84;
+	--color-sumi-300: #a8a8a1;
+
+	/* 生成り(背景) */
+	--color-kinari-50: #faf8f3;
+	--color-kinari-100: #f5f2eb;
+	--color-kinari-200: #ebe6da;
+	--color-kinari-300: #d9d2c2;
+
+	/* 金(罫線・ラベルのみ。面では使わない) */
+	--color-gold-300: #d8c69a;
+	--color-gold-500: #b89a5a;
+	--color-gold-700: #8f7440;
+
+	/* 状態色(フォーム用) */
+	--color-error: #9b2d2d;
+
+	/* --- 書体 --- */
+	--font-mincho: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+	--font-gothic:
+		'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+	--font-latin: 'Cormorant Garamond', 'Times New Roman', serif;
+
+	/* --- 角丸は使わない --- */
+	--radius-*: initial;
+	--radius-none: 0;
+
+	/* --- 字間 --- */
+	--tracking-label: 0.18em;
+	--tracking-heading: 0.04em;
+
+	/* --- 行間 --- */
+	--leading-ja: 1.9;
+	--leading-ja-tight: 1.6;
+
+	/* --- 余白(セクション間) --- */
+	--spacing-section: clamp(5rem, 12vw, 10rem);
+
+	/* --- モーション --- */
+	--ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+	--default-transition-duration: 400ms;
+	--default-transition-timing-function: var(--ease-out-soft);
+}
+
+/* 中国語ページは書体を差し替える */
+:root:lang(zh) {
+	--font-mincho: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+	--font-gothic: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+/* 英語ページは行間を詰める */
+:root:lang(en) {
+	--leading-ja: 1.65;
+	--leading-ja-tight: 1.4;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+		-webkit-text-size-adjust: 100%;
+	}
+
+	body {
+		@apply bg-kinari-100 font-gothic text-sumi-900 antialiased;
+		line-height: var(--leading-ja);
+		font-feature-settings: 'palt' 1;
+		letter-spacing: 0.02em;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		@apply font-mincho font-medium;
+		line-height: var(--leading-ja-tight);
+		letter-spacing: var(--tracking-heading);
+		font-feature-settings: 'palt' 1;
+		text-wrap: balance;
+	}
+
+	p {
+		text-wrap: pretty;
+	}
+
+	a {
+		@apply text-current underline-offset-4;
+	}
+
+	::selection {
+		@apply bg-pine-900 text-kinari-50;
+	}
+
+	:focus-visible {
+		@apply outline-2 outline-offset-4 outline-pine-700;
+	}
+
+	hr {
+		@apply border-t border-kinari-300;
+	}
+
+	/* 動きを減らす設定の利用者には一切アニメーションしない */
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+}
+
+@utility text-label {
+	/* 英字の小さなラベル(例: PHILOSOPHY) */
+	@apply font-latin text-xs font-medium text-gold-700 uppercase;
+	letter-spacing: var(--tracking-label);
+}
+
+@utility container-site {
+	/* サイト全体の横幅と左右余白 */
+	@apply mx-auto w-full max-w-[80rem] px-5 md:px-10 lg:px-16;
+}
+
+@utility writing-vertical {
+	/* 縦書き(見出しのアクセントに1箇所だけ) */
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	font-feature-settings:
+		'palt' 1,
+		'vert' 1;
+}
