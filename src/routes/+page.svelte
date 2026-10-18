@@ -7,11 +7,15 @@
 	import { localHref, localHrefParams } from '#lib/utils/href.js';
 	import Button from '#lib/components/ui/Button.svelte';
 	import PineMotif from '#lib/components/ui/PineMotif.svelte';
+	import MistCanvas from '#lib/components/hero/MistCanvas.svelte';
+	import StaggerText from '#lib/components/hero/StaggerText.svelte';
 	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
 	import TextLink from '#lib/components/ui/TextLink.svelte';
 
 	const locale = getLocale();
 	const news = getNews(locale, 3);
+	// 日本語・中国語は縦書きの見出しにする
+	const vertical = locale !== 'en';
 	const amazonUrl = product.amazonUrl;
 
 	const businesses = [
@@ -26,17 +30,35 @@
 </svelte:head>
 
 <!-- ============ Hero ============
-     TODO: 背景は松の実写(霧や雪の中の松)に差し替える。
-     それまでは深緑の面 + 松葉モチーフで代用。 -->
-<section class="relative flex min-h-svh items-end overflow-hidden bg-pine-950 text-kinari-50">
-	<PineMotif class="absolute inset-0 h-full w-full text-pine-500/60" />
-	<div class="relative container-site pb-20 md:pb-28">
-		<p class="text-label text-gold-300">Kanshodo</p>
-		<h1 class="mt-6 text-4xl leading-[1.3] md:text-6xl">{m.site_tagline()}</h1>
-		<p class="mt-8 max-w-[30em] text-kinari-200 md:text-lg">{m.home_hero_lead()}</p>
+     背景: WebGL の霧(MistCanvas)。実写が入ったら写真の上に薄く重ねる想定。
+     見出し: 日本語・中国語は縦書きで1文字ずつ出現、英語は横書き。 -->
+<section class="relative min-h-svh overflow-hidden bg-pine-950 text-kinari-50">
+	<MistCanvas class="absolute inset-0 h-full w-full" />
+
+	<div class="relative container-site flex min-h-svh flex-col justify-end pb-20 md:pb-28">
+		{#if vertical}
+			<h1
+				class="absolute top-24 right-5 font-mincho writing-vertical text-[clamp(2.5rem,min(5.5vw,6.2svh),5rem)] leading-none font-medium tracking-[0.14em] whitespace-nowrap md:top-32 md:right-10 lg:right-24"
+			>
+				<StaggerText text={m.site_tagline()} delay={300} step={110} />
+			</h1>
+		{:else}
+			<h1 class="mb-10 max-w-[11em] font-mincho text-5xl leading-[1.1] md:text-7xl">
+				<StaggerText text={m.site_tagline()} delay={300} step={40} />
+			</h1>
+		{/if}
+
+		<div class={['max-w-[28em]', vertical && 'max-w-[62%] md:max-w-[28em]']}>
+			<p class="hero-fade text-label text-gold-300" style="--d:1000ms">Kanshodo</p>
+			<p class="hero-fade mt-6 text-kinari-200 md:text-lg" style="--d:1200ms">
+				{m.home_hero_lead()}
+			</p>
+		</div>
 	</div>
+
 	<div
-		class="absolute right-5 bottom-0 hidden flex-col items-center gap-3 md:right-16 md:flex"
+		class="hero-fade absolute bottom-0 left-6 hidden flex-col items-center gap-3 md:flex"
+		style="--d:1600ms"
 		aria-hidden="true"
 	>
 		<span class="font-latin writing-vertical text-xs tracking-label text-kinari-200 uppercase">
