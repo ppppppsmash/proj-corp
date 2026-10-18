@@ -1,3 +1,5 @@
-# allow crawling everything by default
 User-agent: *
 Disallow:
+
+# 本番ドメイン確定後に有効化する(config.siteUrl と合わせる)
+# Sitemap: https://example.com/sitemap.xml
