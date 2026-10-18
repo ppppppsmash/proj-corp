@@ -1,6 +1,6 @@
 # 漢松堂コーポレートサイト 作業メモ
 
-最終更新: 2026-10-18 / コミット数: 61 / CI: green / リポジトリ: `git@github.com:ppppppsmash/proj-corp.git`
+最終更新: 2026-10-18 / CI: green / リポジトリ: `git@github.com:ppppppsmash/proj-corp.git`
 
 ---
 
@@ -13,23 +13,24 @@
 
 ## 2. 技術スタック
 
-| 層 | 採用 |
-|---|---|
+| 層             | 採用                                                                                    |
+| -------------- | --------------------------------------------------------------------------------------- |
 | フレームワーク | SvelteKit 3 / Svelte 5(runes 強制)。設定は `vite.config.ts` に集約、エイリアスは `#lib` |
-| CSS | Tailwind v4。トークンは `src/routes/layout.css` の `@theme` のみ |
-| 多言語 | Paraglide JS。`messages/{ja,en,zh}.json`。URL 戦略、末尾スラッシュなし |
-| 長文 | mdsvex(`src/content/pages/`, `src/content/news/`) |
-| UI | bits-ui(Dialog のみ使用) |
-| フォーム | sveltekit-superforms(SPA モード)+ valibot |
-| 画像 | @sveltejs/enhanced-img(AVIF/WebP、1x/2x 自動生成) |
-| フォント | @fontsource(自前配信。中国本土で Google Fonts が使えないため) |
-| アダプタ | @sveltejs/adapter-vercel(runtime nodejs22.x) |
-| メール | Resend(REST API 直叩き、SDK なし) |
-| CI | GitHub Actions(`.github/workflows/ci.yml`: check → lint → build) |
+| CSS            | Tailwind v4。トークンは `src/routes/layout.css` の `@theme` のみ                        |
+| 多言語         | Paraglide JS。`messages/{ja,en,zh}.json`。URL 戦略、末尾スラッシュなし                  |
+| 長文           | mdsvex(`src/content/pages/`, `src/content/news/`)                                       |
+| UI             | bits-ui(Dialog のみ使用)                                                                |
+| フォーム       | sveltekit-superforms(SPA モード)+ valibot                                               |
+| 画像           | @sveltejs/enhanced-img(AVIF/WebP、1x/2x 自動生成)                                       |
+| フォント       | @fontsource(自前配信。中国本土で Google Fonts が使えないため)                           |
+| アダプタ       | @sveltejs/adapter-vercel(runtime nodejs22.x)                                            |
+| メール         | Resend(REST API 直叩き、SDK なし)                                                       |
+| CI             | GitHub Actions(`.github/workflows/ci.yml`: check → lint → build)                        |
 
 ## 3. 実装済み
 
 ### ページ
+
 - `/` トップ: WebGL 霧のヒーロー(縦書きタグライン・文字出現)、理念、二つの事業、主力製品、お知らせ3件、お問い合わせ CTA
 - `/philosophy` 企業理念 + 代表挨拶
 - `/business` 自社ブランド事業 / OEM・ODM(4工程の流れ)
@@ -41,12 +42,14 @@
 - エラーページ(404 等)
 
 ### 共通
+
 - ヘッダー(スクロールで縮小、トップは透過)、モバイル全画面メニュー、言語切替(全ページ再読込)、フッター
 - View Transitions によるページ遷移、スクロール出現(`use:reveal`、reduced-motion / 印刷 / JS 無効で常時表示)
 - SEO: `Seo.svelte`(title / description / OGP / Twitter / canonical / hreflang)、JSON-LD(Organization / Product / NewsArticle)、`sitemap.xml`、OGP 画像、ファビコン(松葉マーク)
 - 問い合わせ API `/api/contact`: サーバー側で再検証 → Resend 送信。環境変数未設定時は 503 を返し、フォームは「準備中」表示
 
 ### 仮素材(差し替え前提)
+
 - ヒーロー背景: WebGL の霧(実写が来たら写真の上に重ねて使える)
 - 商品画像: Unsplash のストック写真(`src/lib/assets/product.jpg`、Unsplash License、撮影 NutraSeller Manufacturing)
 - 代表肖像: 松葉モチーフの枠(`PineMotif`)
@@ -54,31 +57,36 @@
 ## 4. 運用の仕方
 
 ### 文言・コンテンツ
+
 - UI 文言: `messages/{ja,en,zh}.json`(キーは3言語で揃える)
 - 長文(理念・挨拶・事業・プライバシー): `src/content/pages/{locale}/*.md`
 - ニュース: `src/content/news/{locale}/YYYY-MM-DD-slug.md` を置くだけで一覧・個別・トップ・sitemap に反映。frontmatter は `title`, `date`, `category`(notice / media / event / product)
 - 会社の固定情報(住所・電話・JAN・成分量など): `src/lib/data/company.ts`
 
 ### 設定値(`src/lib/config.ts`)
-| キー | 内容 | 状態 |
-|---|---|---|
-| `siteUrl` | 本番 URL(末尾スラッシュなし)。設定すると canonical / hreflang / og:url / og:image / sitemap が絶対 URL になる | **未設定** |
-| `contactEndpoint` | フォーム送信先 | `/api/contact` |
-| `amazonUrl` | Amazon 商品ページ。設定すると「Amazon で購入する」ボタンが出る | **未設定** |
+
+| キー              | 内容                                                                                                          | 状態           |
+| ----------------- | ------------------------------------------------------------------------------------------------------------- | -------------- |
+| `siteUrl`         | 本番 URL(末尾スラッシュなし)。設定すると canonical / hreflang / og:url / og:image / sitemap が絶対 URL になる | **未設定**     |
+| `contactEndpoint` | フォーム送信先                                                                                                | `/api/contact` |
+| `amazonUrl`       | Amazon 商品ページ。設定すると「Amazon で購入する」ボタンが出る                                                | **未設定**     |
 
 ### 環境変数(Vercel 側に設定。`src/env.ts` で宣言、`.env.example` 参照)
-| 変数 | 内容 |
-|---|---|
-| `RESEND_API_KEY` | Resend の API キー |
-| `CONTACT_TO_EMAIL` | 問い合わせの受信先 |
+
+| 変数                 | 内容                                                                           |
+| -------------------- | ------------------------------------------------------------------------------ |
+| `RESEND_API_KEY`     | Resend の API キー                                                             |
+| `CONTACT_TO_EMAIL`   | 問い合わせの受信先                                                             |
 | `CONTACT_FROM_EMAIL` | 送信元。未設定なら Resend テスト用アドレス(本番は認証済みドメインのアドレスに) |
 
 ### 画像の差し替え
+
 - 商品: `src/lib/assets/product.jpg` を同名で上書き(縦長 4:5 前後)。トップと商品ページに反映
 - 代表肖像: `src/routes/philosophy/+page.svelte` の `PineMotif` 枠を `enhanced:img` に置き換える(ProductImage.svelte が実装例)
 - ヒーロー: `src/routes/+page.svelte` のヒーローに `enhanced:img` を敷き、`MistCanvas` を上に薄く重ねる
 
 ### コマンド
+
 ```
 pnpm dev          # 開発サーバー
 pnpm check        # Paraglide コンパイル → 型チェック
@@ -88,6 +96,7 @@ pnpm format
 ```
 
 ### コミット規約
+
 - 実装順に細かく分割。英語1行、`feat:` / `fix:` / `chore:` / `docs:` の prefix、カッコ(scope)なし、Co-Authored-By なし
 
 ## 5. 設計上のメモ・ハマりどころ
@@ -110,6 +119,7 @@ pnpm format
 ## 7. TODO
 
 ### あなた(クライアント側)の判断・素材待ち
+
 - [ ] Vercel にリポジトリをインポートし、環境変数3つを設定
 - [ ] 本番ドメインを決める → `config.siteUrl` に設定、`static/robots.txt` の Sitemap 行を有効化
 - [ ] Amazon 商品 URL → `config.amazonUrl`
@@ -118,6 +128,7 @@ pnpm format
 - [ ] 問い合わせ受信先メールアドレス、Resend のドメイン認証
 
 ### 実装側で残っているもの
+
 - [ ] ドメイン確定後: siteUrl 設定、本番での OGP / hreflang / sitemap 確認、Search Console 登録
 - [ ] Vercel デプロイ後: 問い合わせフォームの実送信テスト
 - [ ] 写真が届いたら差し替え(ヒーロー・商品・肖像)
