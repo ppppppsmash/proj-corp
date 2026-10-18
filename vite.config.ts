@@ -7,6 +7,10 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+	build: {
+		// フォント小片を base64 で CSS に埋め込まない(CSS が 1MB 超になるため)
+		assetsInlineLimit: 0
+	},
 	plugins: [
 		enhancedImages(),
 		tailwindcss(),

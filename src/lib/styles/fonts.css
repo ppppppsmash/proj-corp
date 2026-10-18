@@ -1,0 +1,14 @@
+/* 日本語・英語ページの Web フォント。
+   CJK フォントは unicode-range で約120分割されるため @font-face が多く CSS が重い。
+   メインCSSから分離し、+layout.svelte で非同期(preload → stylesheet)に読み込む。
+   font-display: swap なので、読み込み中はシステムフォントで先に表示される。 */
+
+/* 見出し(明朝): 500 を標準、700 を強調に */
+@import '@fontsource/shippori-mincho-b1/500.css';
+@import '@fontsource/shippori-mincho-b1/700.css';
+/* 本文(ゴシック) */
+@import '@fontsource/zen-kaku-gothic-new/400.css';
+@import '@fontsource/zen-kaku-gothic-new/700.css';
+/* 英字ラベル・数字 */
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/500.css';

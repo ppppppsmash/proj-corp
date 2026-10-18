@@ -1,0 +1,3 @@
+/* 中国語ページ専用。+layout.svelte で locale === 'zh' のときだけ <link> で読み込む。
+   メインCSSに含めると全言語の初回表示を遅らせるため分離している。 */
+@import '@fontsource/noto-serif-sc/600.css';
