@@ -196,7 +196,7 @@
 			use:reveal={{ delay: 120 }}
 		>
 			<Button tone="light" variant="solid" href={localHref('/contact')}>{m.cta_contact()}</Button>
-			<Button tone="light" href={localHref('/contact')}>{m.cta_oem()}</Button>
+			<Button tone="light" href="{localHref('/contact')}?type=oem">{m.cta_oem()}</Button>
 		</div>
 	</div>
 </section>

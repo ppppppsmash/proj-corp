@@ -74,7 +74,7 @@
 
 			<p class="mt-10 max-w-[36em] text-sumi-700">{m.oem_cta_body()}</p>
 			<div class="mt-8">
-				<Button href={localHref('/contact')}>{m.cta_oem()}</Button>
+				<Button href="{localHref('/contact')}?type=oem">{m.cta_oem()}</Button>
 			</div>
 		</div>
 	</div>
