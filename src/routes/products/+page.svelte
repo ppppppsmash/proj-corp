@@ -4,7 +4,7 @@
 	import { product } from '#lib/data/company.js';
 	import Button from '#lib/components/ui/Button.svelte';
 	import PageHeader from '#lib/components/ui/PageHeader.svelte';
-	import PineMotif from '#lib/components/ui/PineMotif.svelte';
+	import ProductImage from '#lib/components/ui/ProductImage.svelte';
 
 	const amazonUrl = product.amazonUrl;
 	const p = product.perServing;
@@ -33,17 +33,8 @@
 
 <!-- 製品概要 -->
 <section class="container-site grid gap-12 pb-section md:grid-cols-12 md:gap-16">
-	<!-- TODO: パッケージの物撮り写真(enhanced:img)に差し替える -->
-	<div
-		class="relative aspect-[4/5] overflow-hidden bg-pine-900 text-pine-500/70 md:col-span-5"
-		use:reveal
-	>
-		<PineMotif class="absolute inset-0 h-full w-full" />
-		<p
-			class="absolute bottom-6 left-6 font-latin text-xs tracking-label text-kinari-200/70 uppercase"
-		>
-			Product photo
-		</p>
+	<div class="overflow-hidden md:col-span-5" use:reveal>
+		<ProductImage class="aspect-[4/5] h-auto w-full object-cover" priority />
 	</div>
 	<div class="md:col-span-7" use:reveal={{ delay: 120 }}>
 		<p class="text-label">NMN 45000 + CoQ10</p>

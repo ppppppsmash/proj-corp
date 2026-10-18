@@ -6,7 +6,7 @@
 	import { categoryLabel, formatDate, getNews } from '#lib/content/news.js';
 	import { localHref, localHrefParams } from '#lib/utils/href.js';
 	import Button from '#lib/components/ui/Button.svelte';
-	import PineMotif from '#lib/components/ui/PineMotif.svelte';
+	import ProductImage from '#lib/components/ui/ProductImage.svelte';
 	import MistCanvas from '#lib/components/hero/MistCanvas.svelte';
 	import StaggerText from '#lib/components/hero/StaggerText.svelte';
 	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
@@ -112,19 +112,10 @@
 	</div>
 </section>
 
-<!-- ============ Product ============
-     TODO: 左カラムはパッケージの物撮り写真(enhanced:img)に差し替える。 -->
+<!-- ============ Product ============ -->
 <section class="container-site grid items-center gap-12 py-section md:grid-cols-12 md:gap-16">
-	<div
-		class="relative aspect-[4/5] overflow-hidden bg-pine-900 text-pine-500/70 md:col-span-5"
-		use:reveal
-	>
-		<PineMotif class="absolute inset-0 h-full w-full" />
-		<p
-			class="absolute bottom-6 left-6 font-latin text-xs tracking-label text-kinari-200/70 uppercase"
-		>
-			Product photo
-		</p>
+	<div class="overflow-hidden md:col-span-5" use:reveal>
+		<ProductImage class="aspect-[4/5] h-auto w-full object-cover" />
 	</div>
 	<div class="md:col-span-7" use:reveal={{ delay: 120 }}>
 		<p class="text-label">Product</p>
