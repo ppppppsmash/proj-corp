@@ -21,5 +21,15 @@
 	"label_date": "Date",
 	"not_found_title": "Page not found",
 	"not_found_body": "The page you are looking for may have been moved or removed.",
-	"back_to_home": "Back to home"
+	"back_to_home": "Back to home",
+	"skip_to_content": "Skip to content",
+	"footer_sitemap": "Sitemap",
+	"footer_company_info": "Company",
+	"label_tel": "Tel",
+	"label_address": "Address",
+	"lang_ja": "日本語",
+	"lang_en": "English",
+	"lang_zh": "中文",
+	"error_generic_title": "Something went wrong",
+	"error_generic_body": "Please try again later."
 }

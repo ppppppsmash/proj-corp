@@ -21,5 +21,15 @@
 	"label_date": "日期",
 	"not_found_title": "页面不存在",
 	"not_found_body": "您访问的页面可能已被移动或删除。",
-	"back_to_home": "返回首页"
+	"back_to_home": "返回首页",
+	"skip_to_content": "跳转至正文",
+	"footer_sitemap": "网站地图",
+	"footer_company_info": "公司信息",
+	"label_tel": "电话",
+	"label_address": "地址",
+	"lang_ja": "日本語",
+	"lang_en": "English",
+	"lang_zh": "中文",
+	"error_generic_title": "发生错误",
+	"error_generic_body": "请稍后再试。"
 }

@@ -21,5 +21,15 @@
 	"label_date": "日付",
 	"not_found_title": "ページが見つかりません",
 	"not_found_body": "お探しのページは移動または削除された可能性があります。",
-	"back_to_home": "トップへ戻る"
+	"back_to_home": "トップへ戻る",
+	"skip_to_content": "本文へ移動",
+	"footer_sitemap": "サイトマップ",
+	"footer_company_info": "会社情報",
+	"label_tel": "電話",
+	"label_address": "所在地",
+	"lang_ja": "日本語",
+	"lang_en": "English",
+	"lang_zh": "中文",
+	"error_generic_title": "エラーが発生しました",
+	"error_generic_body": "時間をおいて再度お試しください。"
 }
