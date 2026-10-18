@@ -204,3 +204,23 @@
 		animation: none !important;
 	}
 }
+
+/* --- スクロール出現(src/lib/actions/reveal.ts) --- */
+.reveal {
+	opacity: 0;
+	translate: 0 14px;
+	transition:
+		opacity 700ms var(--ease-out-soft) var(--reveal-delay, 0ms),
+		translate 700ms var(--ease-out-soft) var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+	opacity: 1;
+	translate: 0 0;
+}
+@media (prefers-reduced-motion: reduce), print {
+	.reveal {
+		opacity: 1;
+		translate: none;
+		transition: none;
+	}
+}
