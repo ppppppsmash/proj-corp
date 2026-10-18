@@ -34,8 +34,10 @@ export default defineConfig(
 		}
 	},
 	{
-		// Override or add rule settings here, such as:
-		// 'svelte/button-has-type': 'error'
-		rules: {}
+		rules: {
+			// リンクは #lib/utils/href の localHref()(RouteId で型付け済み)経由で
+			// 多言語化するため、href に直接 resolve() を書く必要はない。
+			'svelte/no-navigation-without-resolve': ['error', { ignoreLinks: true }]
+		}
 	}
 );
