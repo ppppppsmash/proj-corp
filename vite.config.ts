@@ -16,7 +16,9 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter(),
+			// 全ページを静的生成(SSG)。問い合わせフォームの送信先が決まったら
+			// adapter-cloudflare 等へ差し替える。
+			adapter: adapter({ strict: true }),
 			preprocess: [mdsvex({ extensions: ['.svx', '.md'] })],
 			extensions: ['.svelte', '.svx', '.md']
 		}),
@@ -24,7 +26,10 @@ export default defineConfig({
 		paraglideVitePlugin({
 			project: './project.inlang',
 			outdir: './src/lib/paraglide',
-			emitTsDeclarations: true
+			emitTsDeclarations: true,
+			// 静的サイトなので Cookie ではなく URL で言語を決める。
+			// ja: /about  en: /en/about  zh: /zh/about
+			strategy: ['url', 'baseLocale']
 		})
 	]
 });
