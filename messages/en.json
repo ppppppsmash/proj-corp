@@ -152,5 +152,7 @@
 	"err_email": "Please enter a valid email address",
 	"err_tel": "Please enter a valid phone number",
 	"err_min_message": "Please enter at least 10 characters",
-	"err_agree": "You must agree to the Privacy Policy"
+	"err_agree": "You must agree to the Privacy Policy",
+	"privacy_established": "Established",
+	"privacy_date": "October 18, 2026"
 }

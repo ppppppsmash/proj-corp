@@ -152,5 +152,7 @@
 	"err_email": "请输入有效的电子邮箱",
 	"err_tel": "请输入有效的电话号码",
 	"err_min_message": "咨询内容请至少填写10个字",
-	"err_agree": "需要同意隐私政策"
+	"err_agree": "需要同意隐私政策",
+	"privacy_established": "制定日期",
+	"privacy_date": "2026年10月18日"
 }
