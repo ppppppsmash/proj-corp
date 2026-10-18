@@ -1,4 +1,25 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from ja!"
+	"site_name": "漢松堂株式会社",
+	"site_tagline": "松の如く、青々と。",
+	"nav_home": "トップ",
+	"nav_philosophy": "企業理念",
+	"nav_business": "事業内容",
+	"nav_products": "商品紹介",
+	"nav_company": "会社概要",
+	"nav_news": "ニュース",
+	"nav_contact": "お問い合わせ",
+	"nav_menu_open": "メニューを開く",
+	"nav_menu_close": "メニューを閉じる",
+	"lang_switch_label": "言語",
+	"footer_privacy": "プライバシーポリシー",
+	"footer_copyright": "© {year} Kanshodo Co., Ltd.",
+	"cta_contact": "お問い合わせはこちら",
+	"cta_oem": "OEM・ODMのご相談",
+	"cta_buy_amazon": "Amazonで購入する",
+	"cta_read_more": "詳しく見る",
+	"label_date": "日付",
+	"not_found_title": "ページが見つかりません",
+	"not_found_body": "お探しのページは移動または削除された可能性があります。",
+	"back_to_home": "トップへ戻る"
 }

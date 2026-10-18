@@ -1,4 +1,25 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from zh!"
+	"site_name": "汉松堂株式会社",
+	"site_tagline": "如松常青。",
+	"nav_home": "首页",
+	"nav_philosophy": "企业理念",
+	"nav_business": "业务介绍",
+	"nav_products": "产品介绍",
+	"nav_company": "公司概要",
+	"nav_news": "新闻资讯",
+	"nav_contact": "联系我们",
+	"nav_menu_open": "打开菜单",
+	"nav_menu_close": "关闭菜单",
+	"lang_switch_label": "语言",
+	"footer_privacy": "隐私政策",
+	"footer_copyright": "© {year} Kanshodo Co., Ltd.",
+	"cta_contact": "联系我们",
+	"cta_oem": "OEM / ODM 咨询",
+	"cta_buy_amazon": "前往 Amazon 购买",
+	"cta_read_more": "查看详情",
+	"label_date": "日期",
+	"not_found_title": "页面不存在",
+	"not_found_body": "您访问的页面可能已被移动或删除。",
+	"back_to_home": "返回首页"
 }
