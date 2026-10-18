@@ -3,9 +3,11 @@
 ## スタック
 - SvelteKit 3 / Svelte 5 (runes 強制)。設定は `vite.config.ts` に集約(svelte.config.js は無い)
 - `$lib` ではなく `#lib` エイリアス(package.json の `imports`)
-- adapter-static で全ページ SSG(`src/routes/+layout.ts` の `prerender = true`)
+- Vercel(adapter-vercel)。ページは全て SSG(`src/routes/+layout.ts` の `prerender = true`)、サーバー関数は `/api/contact` だけ
+- 問い合わせメールは Resend。環境変数は `.env.example` 参照(Vercel 側に設定)。未設定なら API が 503 を返しフォームは「準備中」表示
 - Tailwind v4。トークンは `src/routes/layout.css` の `@theme` のみで定義する
 - 多言語: Paraglide JS。`messages/{ja,en,zh}.json`、URL 戦略(ja は無接頭辞、/en、/zh)
+- 外部依存の設定(本番 URL、Amazon URL、フォーム送信先)は `src/lib/config.ts` に集約
 - 長文コンテンツ: mdsvex(`src/content/`)。UI 文言は messages、固定データは `src/lib/data/`
 - UI プリミティブ: bits-ui(見た目は付けない)。フォーム: sveltekit-superforms + valibot。モーション: motion
 - フォントは @fontsource で自前配信(中国本土で Google Fonts が使えないため)。Google Maps 埋め込みも同じ理由で避ける

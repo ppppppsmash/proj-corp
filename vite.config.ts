@@ -2,7 +2,7 @@ import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { mdsvex } from 'mdsvex';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import tailwindcss from '@tailwindcss/vite';
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-vercel';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
@@ -20,9 +20,9 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			// 全ページを静的生成(SSG)。問い合わせフォームの送信先が決まったら
-			// adapter-cloudflare 等へ差し替える。
-			adapter: adapter({ strict: true }),
+			// Vercel にデプロイ。ページは +layout.ts の prerender = true で全て静的生成し、
+			// サーバー関数になるのは /api/contact(問い合わせメール送信)だけ。
+			adapter: adapter({ runtime: 'nodejs22.x' }),
 			// resolve() が '../company' のような相対パスではなく '/company' を返すようにする。
 			// Paraglide の localizeHref() は '/' 始まりのパスしか相対 URL として扱わないため。
 			paths: { relative: false },
