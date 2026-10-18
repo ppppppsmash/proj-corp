@@ -190,3 +190,17 @@
 @utility animate-fade-out {
 	animation: fade-out 250ms var(--ease-out-soft) both;
 }
+
+/* --- ページ遷移(View Transitions API)は短いクロスフェードのみ --- */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 250ms;
+	animation-timing-function: var(--ease-out-soft);
+}
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
