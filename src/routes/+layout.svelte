@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Path } from '$app/types';
 	import { onNavigate } from '$app/navigation';
-	import { resolve } from '$app/paths';
+	import { asset, resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import * as m from '#lib/paraglide/messages.js';
 	import { getLocale, locales, localizeHref } from '#lib/paraglide/runtime.js';
@@ -46,7 +46,9 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href={favicon} type="image/svg+xml" />
+	<link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
+	<meta name="theme-color" content="#0f201a" />
 	{#each fontSheets as href (href)}
 		<link rel="preload" as="style" {href} />
 		<noscript><link rel="stylesheet" {href} /></noscript>
